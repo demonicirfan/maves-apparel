@@ -17,6 +17,6 @@ mongoose
 
 app.use('/api/v1/products', productRouter);
 
-app.listen(process.env.PORT || 5000, () => {
+app.listen(process.env.PORT || 3002, () => {
   console.log('Send requests at port ' + process.env.PORT || 5000 + ' 🏃');
 });

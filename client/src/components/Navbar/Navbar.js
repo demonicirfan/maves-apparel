@@ -3,11 +3,10 @@ import {
   Flex,
   Text,
   IconButton,
-  Button,
   Stack,
   Collapse,
   Icon,
-  Link,
+  Link as ChakraLink,
   Popover,
   PopoverTrigger,
   PopoverContent,
@@ -22,21 +21,29 @@ import {
   ChevronRightIcon,
 } from '@chakra-ui/icons';
 import logo from '../../Images/Logo.png';
+import { Link as RouterLink } from 'react-router-dom';
+const _bg = '#FAF9F8';
 export default function Navbar() {
   const { isOpen, onToggle } = useDisclosure();
 
   return (
-    <Box>
+    <Box
+      bg={_bg}
+      as='header'
+      position='fixed'
+      w={'100%'}
+      zIndex={'2'}
+      top={'0'}
+    >
       <Flex
-        bg={useColorModeValue('white', 'gray.800')}
-        color={useColorModeValue('gray.600', 'white')}
-        minH={'60px'}
-        py={{ base: 2 }}
+        minH={'93px'}
+        py={{ base: '20px' }}
         px={{ base: 4 }}
         borderBottom={1}
         borderStyle={'solid'}
-        borderColor={useColorModeValue('gray.200', 'gray.900')}
+        borderColor={'gray.900'}
         align={'center'}
+        justify={'space-between'}
       >
         <Flex
           flex={{ base: 1, md: 'auto' }}
@@ -46,48 +53,28 @@ export default function Navbar() {
           <IconButton
             onClick={onToggle}
             icon={
-              isOpen ? <CloseIcon w={3} h={3} /> : <HamburgerIcon w={5} h={5} />
+              isOpen ? (
+                <CloseIcon color={'black'} w={3} h={3} />
+              ) : (
+                <HamburgerIcon w={5} h={5} color={'black'} />
+              )
             }
             variant={'ghost'}
             aria-label={'Toggle Navigation'}
           />
         </Flex>
-        <Flex flex={{ base: 1 }} justify={{ base: 'center', md: 'start' }}>
-          <Image src={logo} alt='logo' width={'24'} />
-          <Flex display={{ base: 'none', md: 'flex' }} ml={10}>
+        <Flex
+          flex={{ base: 1 }}
+          justify={{ base: 'end', md: 'start' }}
+          maxW={'6xl'}
+          mx={'auto'}
+          pr={['0', '0', '28']}
+        >
+          <Image src={logo} alt='logo' width={20} />
+          <Flex display={{ base: 'none', md: 'flex' }} mx={'auto'}>
             <DesktopNav />
           </Flex>
         </Flex>
-
-        {/* <Stack
-          flex={{ base: 1, md: 0 }}
-          justify={'flex-end'}
-          direction={'row'}
-          spacing={6}
-        >
-          <Button
-            as={'a'}
-            fontSize={'sm'}
-            fontWeight={400}
-            variant={'link'}
-            href={'#'}
-          >
-            Sign In
-          </Button>
-          <Button
-            display={{ base: 'none', md: 'inline-flex' }}
-            fontSize={'sm'}
-            fontWeight={600}
-            color={'white'}
-            bg={'pink.400'}
-            href={'#'}
-            _hover={{
-              bg: 'pink.300',
-            }}
-          >
-            Sign Up
-          </Button>
-        </Stack> */}
       </Flex>
 
       <Collapse in={isOpen} animateOpacity>
@@ -98,46 +85,34 @@ export default function Navbar() {
 }
 
 const DesktopNav = () => {
-  const linkColor = useColorModeValue('gray.600', 'gray.200');
-  const linkHoverColor = useColorModeValue('gray.800', 'white');
-  const popoverContentBgColor = useColorModeValue('white', 'gray.800');
+  const linkColor = useColorModeValue('black.600', 'gray.800');
+  const linkHoverColor = useColorModeValue('gray.800', 'gray.600');
 
   return (
-    <Stack
-      direction={'row'}
-      spacing={4}
-      outline={'2px solid'}
-      alignItems={'center'}
-    >
+    <Stack direction={'row'} spacing={8} alignItems={'center'}>
       {NAV_ITEMS.map((navItem) => (
         <Box key={navItem.label}>
           <Popover trigger={'hover'} placement={'bottom-start'}>
             <PopoverTrigger>
-              <Link
-                p={2}
-                href={navItem.href ?? '#'}
-                fontSize={'lg'}
-                fontWeight={600}
-                color={linkColor}
-                _hover={{
-                  textDecoration: 'none',
-                  color: linkHoverColor,
-                }}
-              >
-                {navItem.label}
-              </Link>
+              <RouterLink to={navItem.href ?? '#'}>
+                <ChakraLink
+                  p={2}
+                  fontSize={'lg'}
+                  fontWeight={300}
+                  color={linkColor}
+                  _hover={{
+                    textDecoration: 'none',
+                    color: linkHoverColor,
+                  }}
+                >
+                  {navItem.label}
+                </ChakraLink>
+              </RouterLink>
             </PopoverTrigger>
 
             {navItem.children && (
-              <PopoverContent
-                border={0}
-                boxShadow={'xl'}
-                bg={popoverContentBgColor}
-                p={4}
-                rounded={'xl'}
-                minW={'sm'}
-              >
-                <Stack>
+              <PopoverContent bg={_bg} color='gray.600' mx={'2'}>
+                <Stack border={'1px'}>
                   {navItem.children.map((child) => (
                     <DesktopSubNav key={child.label} {...child} />
                   ))}
@@ -153,48 +128,39 @@ const DesktopNav = () => {
 
 const DesktopSubNav = ({ label, href, subLabel }) => {
   return (
-    <Link
-      href={href}
-      role={'group'}
-      display={'block'}
-      p={2}
-      rounded={'md'}
-      _hover={{ bg: useColorModeValue('blue.50', 'gray.900') }}
-    >
-      <Stack direction={'row'} align={'center'}>
-        <Box>
-          <Text
+    <RouterLink to={href}>
+      <ChakraLink role={'group'} display={'block'} p={2}>
+        <Stack direction={'row'} align={'center'}>
+          <Box>
+            <Text
+              transition={'all .3s ease'}
+              _groupHover={{ color: 'black' }}
+              fontWeight={500}
+            >
+              {label}
+            </Text>
+            <Text fontSize={'sm'}>{subLabel}</Text>
+          </Box>
+          <Flex
             transition={'all .3s ease'}
-            _groupHover={{ color: 'blue.400' }}
-            fontWeight={500}
+            transform={'translateX(-10px)'}
+            opacity={0}
+            _groupHover={{ opacity: '100%', transform: 'translateX(0)' }}
+            justify={'flex-end'}
+            align={'center'}
+            flex={1}
           >
-            {label}
-          </Text>
-          <Text fontSize={'sm'}>{subLabel}</Text>
-        </Box>
-        <Flex
-          transition={'all .3s ease'}
-          transform={'translateX(-10px)'}
-          opacity={0}
-          _groupHover={{ opacity: '100%', transform: 'translateX(0)' }}
-          justify={'flex-end'}
-          align={'center'}
-          flex={1}
-        >
-          <Icon color={'blue.400'} w={5} h={5} as={ChevronRightIcon} />
-        </Flex>
-      </Stack>
-    </Link>
+            <Icon color={'gray.600'} w={6} h={6} as={ChevronRightIcon} />
+          </Flex>
+        </Stack>
+      </ChakraLink>
+    </RouterLink>
   );
 };
 
 const MobileNav = () => {
   return (
-    <Stack
-      bg={useColorModeValue('white', 'gray.800')}
-      p={4}
-      display={{ md: 'none' }}
-    >
+    <Stack bg={_bg} color={'black'} p={4} display={{ md: 'none' }}>
       {NAV_ITEMS.map((navItem) => (
         <MobileNavItem key={navItem.label} {...navItem} />
       ))}
@@ -207,32 +173,30 @@ const MobileNavItem = ({ label, children, href }) => {
 
   return (
     <Stack spacing={4} onClick={children && onToggle}>
-      <Flex
-        py={2}
-        as={Link}
-        href={href ?? '#'}
-        justify={'space-between'}
-        align={'center'}
-        _hover={{
-          textDecoration: 'none',
-        }}
-      >
-        <Text
-          fontWeight={600}
-          color={useColorModeValue('gray.600', 'gray.200')}
+      <RouterLink to={href ?? '#'}>
+        <Flex
+          py={2}
+          as={ChakraLink}
+          justify={'space-between'}
+          align={'center'}
+          _hover={{
+            textDecoration: 'none',
+          }}
         >
-          {label}
-        </Text>
-        {children && (
-          <Icon
-            as={ChevronDownIcon}
-            transition={'all .25s ease-in-out'}
-            transform={isOpen ? 'rotate(180deg)' : ''}
-            w={6}
-            h={6}
-          />
-        )}
-      </Flex>
+          <Text fontWeight={500} color={'gray.700'}>
+            {label}
+          </Text>
+          {children && (
+            <Icon
+              as={ChevronDownIcon}
+              transition={'all .25s ease-in-out'}
+              transform={isOpen ? 'rotate(180deg)' : ''}
+              w={6}
+              h={6}
+            />
+          )}
+        </Flex>
+      </RouterLink>
 
       <Collapse in={isOpen} animateOpacity style={{ marginTop: '0!important' }}>
         <Stack
@@ -245,9 +209,9 @@ const MobileNavItem = ({ label, children, href }) => {
         >
           {children &&
             children.map((child) => (
-              <Link key={child.label} py={2} href={child.href}>
-                {child.label}
-              </Link>
+              <RouterLink key={child.label} to={child.href}>
+                <ChakraLink py={2}>{child.label}</ChakraLink>
+              </RouterLink>
             ))}
         </Stack>
       </Collapse>
@@ -258,51 +222,51 @@ const MobileNavItem = ({ label, children, href }) => {
 const NAV_ITEMS = [
   {
     label: 'Home',
-    href: '#',
+    href: '/home',
   },
   {
     label: 'About',
-    href: '#',
+    href: '/About',
   },
   {
     label: 'Products',
     children: [
       {
         label: 'Gloves',
-        href: 'gloves',
+        href: '/?category=gloves',
       },
       {
         label: 'T-Shirts',
-        href: 't-shirts',
+        href: '/?category=tshirts',
       },
       {
         label: 'Polo',
-        href: 'poplo',
+        href: '/?category=poplo',
       },
       {
         label: 'Hoodies',
-        href: 'hoodies',
+        href: '/?category=hoodies',
       },
       {
         label: 'Tracksuits',
-        href: 'tract-suit',
+        href: '/?category=tract-suit',
       },
       {
         label: 'Active Wear',
-        href: 'active-wear',
+        href: '/?category=active-wear',
       },
       {
         label: 'Knitwear',
-        href: 'knitwear',
+        href: '/?category=knitwear',
       },
       {
         label: 'Shorts',
-        href: 'shorts',
+        href: '/?category=shorts',
       },
     ],
   },
   {
     label: 'Contact Us',
-    href: '#',
+    href: '/contact-us',
   },
 ];

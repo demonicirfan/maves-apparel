@@ -12,11 +12,19 @@ router.post('/', async (req, res) => {
 });
 
 //* get featured products
-router.get('/featured', async (req, res) => {
+router.get('/', async (req, res) => {
   try {
-    const getFeaturedProducts = await Product.find(req.query);
+    const { featured, category } = req.query;
+    const queryObject = {};
+    if (featured) {
+      queryObject.featured = featured === 'true' ? true : false;
+    }
+    if (category) {
+      queryObject.category = category;
+    }
+    const getFeaturedProducts = await Product.find(queryObject);
     res
-      .status(201)
+      .status(200)
       .json({ getFeaturedProducts, nbHits: getFeaturedProducts.length });
   } catch (error) {
     res.status(500).json({ msg: err });
@@ -59,24 +67,6 @@ router.get('/', async (req, res) => {
   } catch (error) {
     res.status(500).json({ msg: err });
   }
-  // const qNew = req.query.new;
-  // const qCategory = req.query.category;
-  // try {
-  //   let products;
-  //   if (qNew) {
-  //     products = await Product.find().sort({ createdAt: -1 }).limit(5);
-  //   } else if (qCategory) {
-  //     products = await Product.find({
-  //       categories: {
-  //         $in: [qCategory],
-  //       },
-  //     });
-  //   } else {
-  //     products = await Product.find();
-  //   }
-  // } catch (err) {
-  //   res.status(500).json(err);
-  // }
 });
 
 module.exports = router;

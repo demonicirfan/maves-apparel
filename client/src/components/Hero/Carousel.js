@@ -20,7 +20,7 @@ const settings = {
   fade: true,
   infinite: true,
   autoplay: true,
-  speed: 500,
+  speed: 1000,
   autoplaySpeed: 2000,
   slidesToShow: 1,
   slidesToScroll: 1,
@@ -43,28 +43,29 @@ export default function CaptionCarousel() {
       title: 'Design Projects 1',
       text: "The project board is an exclusive resource for contract work. It's perfect for freelancers, agencies, and moonlighters.",
       image:
-        'https://images.unsplash.com/photo-1516796181074-bf453fbfa3e6?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1yZWxhdGVkfDV8fHxlbnwwfHx8fA%3D%3D&auto=format&fit=crop&w=900&q=60',
+        'https://images.unsplash.com/photo-1568364419877-50ce357e22e5?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1471&q=80',
     },
     {
       title: 'Design Projects 2',
       text: "The project board is an exclusive resource for contract work. It's perfect for freelancers, agencies, and moonlighters.",
       image:
-        'https://images.unsplash.com/photo-1438183972690-6d4658e3290e?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=2274&q=80',
+        'https://images.unsplash.com/photo-1579664531470-ac357f8f8e2b?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80',
     },
     {
       title: 'Design Projects 3',
       text: "The project board is an exclusive resource for contract work. It's perfect for freelancers, agencies, and moonlighters.",
       image:
-        'https://images.unsplash.com/photo-1507237998874-b4d52d1dd655?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1yZWxhdGVkfDR8fHxlbnwwfHx8fA%3D%3D&auto=format&fit=crop&w=900&q=60',
+        'https://images.unsplash.com/photo-1508213549911-bb8ac124d13f?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80',
     },
   ];
 
   return (
     <Box
       position={'relative'}
-      height={'600px'}
+      height={'500px'}
       width={'full'}
       overflow={'hidden'}
+      mt={'88px'}
     >
       {/* CSS files for react-slick */}
       <link
@@ -79,7 +80,7 @@ export default function CaptionCarousel() {
         href='https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.6.0/slick-theme.min.css'
       />
       {/* Left Icon */}
-      <IconButton
+      {/* <IconButton
         aria-label='left-arrow'
         variant='ghost'
         position='absolute'
@@ -92,7 +93,7 @@ export default function CaptionCarousel() {
         <BiLeftArrowAlt size='40px' />
       </IconButton>
       {/* Right Icon */}
-      <IconButton
+      {/*  <IconButton
         aria-label='right-arrow'
         variant='ghost'
         position='absolute'
@@ -103,7 +104,7 @@ export default function CaptionCarousel() {
         onClick={() => slider?.slickNext()}
       >
         <BiRightArrowAlt size='40px' />
-      </IconButton>
+      </IconButton> */}
       {/* Slider */}
       <Slider {...settings} ref={(slider) => setSlider(slider)}>
         {cards.map((card, index) => (
