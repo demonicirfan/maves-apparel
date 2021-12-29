@@ -5,6 +5,7 @@ const router = require('express').Router();
 router.post('/', async (req, res) => {
   try {
     const createdProduct = await Product.create(req.body);
+    console.log(createdProduct);
     res.status(201).json({ createdProduct });
   } catch (err) {
     res.status(500).json({ msg: err });

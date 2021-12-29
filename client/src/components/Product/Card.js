@@ -1,13 +1,14 @@
 import { Image, Center, HStack, Text, Box, Heading } from '@chakra-ui/react';
+import { Link as RouterLink, NavLink } from 'react-router-dom';
 
 function Card(params) {
   return (
-    <a href={`${params.id}`}>
+    <a href='to-card'>
       <Center
         flexDirection={'column'}
         bg={'white'}
         shadow={'xl'}
-        mx={['2', '4', '8']}
+        mx={['8', '8', '8']}
         mb={'28'}
         _hover={{
           transform: 'translateY(-5px)',
@@ -15,14 +16,13 @@ function Card(params) {
           shadow: '2xl',
         }}
       >
-        <Box boxSize={['180px', '222px', '300px']}>
+        <Box boxSize={'300px'}>
           <Image
             src={params.imageURL}
             alt={params.title}
             fit={'cover'}
-            h={['180px', '222px', '300px']}
+            h={['300px', '300px', '300px']}
             w={'100%'}
-            s
           />
         </Box>
         <HStack

@@ -33,6 +33,7 @@ const Featured = () => {
             imageURL={product.img}
             code={product.code}
             size={product.size}
+            id={product._id}
           />
         ))}
       </Flex>

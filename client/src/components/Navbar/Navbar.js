@@ -175,7 +175,7 @@ const MobileNavItem = ({ label, children, href }) => {
     <Stack spacing={4} onClick={children && onToggle}>
       <RouterLink to={href ?? '#'}>
         <Flex
-          py={2}
+          py={0}
           as={ChakraLink}
           justify={'space-between'}
           align={'center'}
