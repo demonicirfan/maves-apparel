@@ -1,12 +1,15 @@
 import { Flex, VStack, Text } from '@chakra-ui/react';
 import React, { useEffect, useState } from 'react';
-import Card from './FeaturedCard.js';
+import { useParams } from 'react-router-dom';
+import Card from '../components/Featured/FeaturedCard';
 
-const Featured = () => {
+const CategoryProducts = () => {
   const [items, setItems] = useState([]);
+  const { category } = useParams();
+  console.log(category);
   useEffect(() => {
     try {
-      fetch('/api/v1/products/?featured=true')
+      fetch(`/api/v1/products/?category=${category}`)
         .then((res) => {
           if (res.ok) {
             return res.json();
@@ -27,13 +30,13 @@ const Featured = () => {
         Featured
       </Text>
       <Flex wrap={'wrap'} justifyContent={'space-around'}>
-        {items.map((product) => (
+        {items.map((item) => (
           <Card
-            title={product.title}
-            imageURL={product.img}
-            code={product.code}
-            size={product.size}
-            id={product._id}
+            title={item.title}
+            imageURL={item.img}
+            code={item.code}
+            size={item.size}
+            id={item._id}
           />
         ))}
       </Flex>
@@ -41,4 +44,4 @@ const Featured = () => {
   );
 };
 
-export default Featured;
+export default CategoryProducts;

@@ -1,4 +1,5 @@
 import { Image, Center, HStack, Text, Box, Heading } from '@chakra-ui/react';
+import { Link } from 'react-router-dom';
 
 function Card(params) {
   return (

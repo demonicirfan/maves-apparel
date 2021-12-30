@@ -1,9 +1,10 @@
 import { Image, Center, HStack, Text, Box, Heading } from '@chakra-ui/react';
-import { Link as RouterLink, NavLink } from 'react-router-dom';
+import { useParams, Link } from 'react-router-dom';
 
 function Card(params) {
+  const { id } = useParams();
   return (
-    <a href='to-card'>
+    <Link to={params.id}>
       <Center
         flexDirection={'column'}
         bg={'white'}
@@ -49,7 +50,7 @@ function Card(params) {
           {params.title}
         </Heading>
       </Center>
-    </a>
+    </Link>
   );
 }
 

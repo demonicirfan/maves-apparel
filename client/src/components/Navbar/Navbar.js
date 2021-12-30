@@ -233,35 +233,35 @@ const NAV_ITEMS = [
     children: [
       {
         label: 'Gloves',
-        href: '/?category=gloves',
+        href: 'gloves',
       },
       {
         label: 'T-Shirts',
-        href: '/?category=tshirts',
+        href: 'tshirt',
       },
       {
         label: 'Polo',
-        href: '/?category=poplo',
+        href: 'polo',
       },
       {
         label: 'Hoodies',
-        href: '/?category=hoodies',
+        href: 'hoodies',
       },
       {
         label: 'Tracksuits',
-        href: '/?category=tract-suit',
+        href: 'tract-suit',
       },
       {
         label: 'Active Wear',
-        href: '/?category=active-wear',
+        href: 'active-wear',
       },
       {
         label: 'Knitwear',
-        href: '/?category=knitwear',
+        href: 'knitwear',
       },
       {
         label: 'Shorts',
-        href: '/?category=shorts',
+        href: 'shorts',
       },
     ],
   },

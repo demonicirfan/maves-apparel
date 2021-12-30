@@ -23,10 +23,10 @@ router.get('/', async (req, res) => {
     if (category) {
       queryObject.category = category;
     }
-    const getFeaturedProducts = await Product.find(queryObject);
+    const getProducts = await Product.find(queryObject);
     res
       .status(200)
-      .json({ getFeaturedProducts, nbHits: getFeaturedProducts.length });
+      .json({ getProducts, nbHits: getProducts.length });
   } catch (error) {
     res.status(500).json({ msg: err });
   }
@@ -34,6 +34,19 @@ router.get('/', async (req, res) => {
 
 //* get product by :id
 router.get('/:id', async (req, res) => {
+  try {
+    const { id: productID } = req.params;
+    const getProduct = await Product.findOne({ _id: productID });
+    if (!getProduct) {
+      return res.status(404).json({ msg: 'Not Found' });
+    }
+    res.status(201).json({ getProduct });
+  } catch (err) {
+    res.status(500).json(err);
+  }
+});
+//* get product by :id
+router.get('/category/:id', async (req, res) => {
   try {
     const { id: productID } = req.params;
     const getProduct = await Product.findOne({ _id: productID });
