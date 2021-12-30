@@ -2,56 +2,79 @@ import {
   Flex,
   VStack,
   Text,
-  HStack,
   Center,
-  Image,
-  Heading,
-  Box,
   Stack,
+  Box,
+  Image,
 } from '@chakra-ui/react';
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import ReactImageMagnify from 'react-image-magnify';
-import Card from '../components/Featured/FeaturedCard';
+import ContentLoader from 'react-content-loader';
+import SimilarItems from '../components/Product/SimilarItems';
+
+const BigScreenLoader = (props) => (
+  <ContentLoader
+    speed={2}
+    width={800}
+    height={500}
+    viewBox='0 0 800 500'
+    backgroundColor='#dedede'
+    foregroundColor='#ecebeb'
+    {...props}
+  >
+    <rect x='-7' y='21' rx='0' ry='0' width='286' height='296' />
+    <rect x='316' y='938' rx='0' ry='0' width='166' height='6' />
+    <rect x='307' y='271' rx='0' ry='0' width='330' height='9' />
+    <rect x='306' y='251' rx='0' ry='0' width='330' height='9' />
+    <rect x='306' y='230' rx='0' ry='0' width='330' height='9' />
+    <rect x='307' y='54' rx='0' ry='0' width='100' height='8' />
+    <rect x='306' y='189' rx='0' ry='0' width='148' height='8' />
+    <rect x='306' y='208' rx='0' ry='0' width='189' height='11' />
+    <rect x='308' y='74' rx='0' ry='0' width='148' height='8' />
+  </ContentLoader>
+);
+const SmallScreenLoader = (props) => (
+  <ContentLoader
+    speed={2}
+    width={330}
+    height={400}
+    viewBox='0 0 330 400'
+    backgroundColor='#dedede'
+    foregroundColor='#ecebeb'
+    {...props}
+  >
+    <rect x='-7' y='21' rx='0' ry='0' width='286' height='296' />
+    <rect x='316' y='938' rx='0' ry='0' width='166' height='6' />
+    <rect x='2' y='342' rx='0' ry='0' width='100' height='8' />
+    <rect x='3' y='362' rx='0' ry='0' width='148' height='8' />
+  </ContentLoader>
+);
 
 const Product = () => {
   const [item, setItem] = useState([]);
-  const [items, setItems] = useState([]);
-  const { category, id } = useParams();
+  const [isLoading, setIsLoading] = useState(true);
+
+  const { id } = useParams();
   console.log(id);
 
   useEffect(() => {
     try {
       fetch(`/api/v1/products/${id}`)
         .then((res) => {
+          setIsLoading(false);
           if (res.ok) {
             return res.json();
           }
         })
         .then((jsonResponse) => {
           setItem(jsonResponse.getProduct);
-          console.log(jsonResponse.getProduct);
-        });
-      fetch(`/api/v1/products/?category=${item.category}`)
-        .then((res) => {
-          if (res.ok) {
-            return res.json();
-          }
-        })
-        .then((jsonResponse) => {
-          for (var i = jsonResponse.getProducts.length - 1; i >= 0; i--) {
-            if (jsonResponse.getProducts[i] === item._id) {
-              jsonResponse.getProducts.splice(i, 1);
-            }
-          }
-          const firstSixItems = jsonResponse.getProducts.slice(0, 6);
-          setItems(firstSixItems);
-          console.log(firstSixItems);
+          console.log('product details - ' + jsonResponse.getProduct);
         });
     } catch (err) {
       console.log(err);
     }
-  });
+  }, [setItem]);
 
   return (
     <VStack
@@ -59,95 +82,103 @@ const Product = () => {
       maxW={'6xl'}
       mx={'auto'}
       bg={'#FAF9F8'}
-      mt={'16'}
+      mt={['0', '0', '16']}
       pt={'16'}
     >
-      <Stack
-        align={'flex-start'}
-        spacing={['8', '16']}
-        direction={{ base: 'column', md: 'row' }}
-      >
-        <Center maxW={['250px', '400px']} m='auto'>
-          <ReactImageMagnify
-            {...{
-              smallImage: {
-                alt: 'Wristwatch by Ted Baker London',
-                isFluidWidth: true,
-                src: `${item.img}`,
-                //srcSet: this.srcSet,
-                sizes:
-                  '(max-width: 480px) 100vw, (max-width: 1200px) 30vw, 360px',
-              },
-              largeImage: {
-                src: `${item.img}`,
-                width: 1200,
-                height: 1800,
-              },
-            }}
-          />
-        </Center>
-        <VStack spacing={'8'} align={'flex-start'} pt={'8'}>
-          <Text textTransform={'capitalize'} size={('3xl', '2xl')}>
-            {item.title}
-          </Text>
-          <VStack spacing={['2', '4']} align={'flex-start'} px={'auto'}>
-            <Text fontSize={['md', 'xl']}>
-              <Text as='span' fontWeight={'600'}>
-                Size{' '}
-              </Text>
-              - {item.size}
+      {isLoading ? (
+        <>
+          <Flex
+            display={{ base: 'flex', md: 'none' }}
+            direction='column'
+            mx={'auto'}
+          >
+            <SmallScreenLoader />
+          </Flex>
+          <Flex
+            display={{ base: 'none', md: 'flex' }}
+            direction='row'
+            gap={'16'}
+            mx={'auto'}
+          >
+            <BigScreenLoader />
+          </Flex>
+        </>
+      ) : (
+        <Stack
+          align={'flex-start'}
+          spacing={['8', '16']}
+          direction={{ base: 'column', md: 'row' }}
+        >
+          <Box display={{ base: 'flex', md: 'none' }}>
+            <Image src={item.img} h={'480px'} fit={'cover'} w={'100vw'} />
+          </Box>
+
+          <Center
+            display={{ base: 'none', md: 'flex' }}
+            maxW={'400px'}
+            m='auto'
+          >
+            <ReactImageMagnify
+              {...{
+                smallImage: {
+                  alt: 'Wristwatch by Ted Baker London',
+                  isFluidWidth: true,
+                  src: `${item.img}`,
+                },
+                largeImage: {
+                  src: `${item.img}`,
+                  width: 1200,
+                  height: 1500,
+                },
+                isHintEnabled: true,
+                shouldHideHintAfterFirstActivation: true,
+              }}
+            />
+          </Center>
+
+          <VStack
+            spacing={'8'}
+            align={'flex-start'}
+            pt={['0', '8']}
+            mx={'auto'}
+          >
+            <Text
+              textTransform={'capitalize'}
+              fontSize={['3xl', '4xl']}
+              fontWeight={'600'}
+            >
+              {item.title}
             </Text>
-            <Text fontSize={['md', 'xl']}>
-              <Text as='span' fontWeight={'600'}>
-                Code{' '}
-              </Text>{' '}
-              - #{item.code}
-            </Text>
-            <VStack align={'flex-start'} maxW={['300px', '500px']}>
-              <Text fontSize={['sm', 'xl']} noOfLines={'4'}>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                Consectetur ea soluta quam officiis debitis! Similique cum ut
-                minus! Ut ratione eius voluptatem repellat. Consectetur
-                assumenda id aperiam numquam dolores quis, fugiat suscipit vel
-                blanditiis sapiente nulla nam omnis
+            <VStack spacing={['2', '4']} align={'flex-start'} px={'auto'}>
+              <Text fontSize={['md', 'xl']}>
+                <Text as='span' fontWeight={'600'}>
+                  Size{' '}
+                </Text>
+                - {item.size}
               </Text>
+              <Text fontSize={['md', 'xl']}>
+                <Text as='span' fontWeight={'600'}>
+                  Code{' '}
+                </Text>{' '}
+                - #{item.code}
+              </Text>
+              <VStack align={'flex-start'} maxW={['300px', '500px']}>
+                <Text
+                  fontSize={['sm', 'lg']}
+                  noOfLines={'4'}
+                >
+                  Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                  Consectetur ea soluta quam officiis debitis! Similique cum ut
+                  minus! Ut ratione eius voluptatem repellat. Consectetur
+                  assumenda id aperiam numquam dolores quis, fugiat suscipit vel
+                  blanditiis sapiente nulla nam omnis
+                </Text>
+              </VStack>
             </VStack>
           </VStack>
-        </VStack>
-      </Stack>
-      <VStack
-        direction={'row'}
-        maxW={'6xl'}
-        mx={'auto'}
-        bg={'FAF9F8'}
-        my={'16'}
-      >
-        <Text color={'black'} fontSize={['2xl', '4xl']} mx={'auto'} my={'8'}>
-          Other Similar Items
-        </Text>
-        <Flex wrap={'wrap'} justifyContent={'space-around'}>
-          {items.map((item) => (
-            <Card
-              title={item.title}
-              imageURL={item.img}
-              code={item.code}
-              size={item.size}
-              id={item._id}
-            />
-          ))}
-        </Flex>
-        <Text
-          bg='black'
-          color={'white'}
-          rounded={'full'}
-          px={'4'}
-          py={'2'}
-          mb={'4'}
-        >
-          View more
-        </Text>
-      </VStack>
-      );
+        </Stack>
+      )}
+      <SimilarItems category={item.category} />
     </VStack>
   );
 };

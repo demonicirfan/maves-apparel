@@ -3,25 +3,25 @@ import { Link } from 'react-router-dom';
 
 function Card(params) {
   return (
-    <a href={`${params.id}`}>
+    <Link to={`/product/${params.id}`}>
       <Center
         flexDirection={'column'}
         bg={'white'}
         shadow={'xl'}
         mx={['2', '4', '8']}
-        mb={'28'}
+        mb={['16', '28']}
         _hover={{
           transform: 'translateY(-5px)',
           transition: 'transform 200ms ease-in-out 15ms',
           shadow: '2xl',
         }}
       >
-        <Box boxSize={['180px', '222px', '300px']}>
+        <Box boxSize={['280px', '280px', '300px']}>
           <Image
             src={params.imageURL}
             alt={params.title}
             fit={'cover'}
-            h={['180px', '222px', '300px']}
+            h={['260px', '270px', '300px']}
             w={'100%'}
             s
           />
@@ -50,7 +50,7 @@ function Card(params) {
           {params.title}
         </Heading>
       </Center>
-    </a>
+    </Link>
   );
 }
 

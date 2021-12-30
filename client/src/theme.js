@@ -1,10 +1,12 @@
 import { extendTheme } from '@chakra-ui/react';
+import '@fontsource/poppins';
+import '@fontsource/italiana';
 
-const config = {
-  initialColorMode: 'dark',
-  useSystemColorMode: false,
-};
-
-const theme = extendTheme({ config });
+const theme = extendTheme({
+  fonts: {
+    body: 'Poppins',
+    itailiana: 'Italiana',
+  },
+});
 
 export default theme;

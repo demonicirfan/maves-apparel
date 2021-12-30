@@ -36,8 +36,7 @@ export default function Navbar() {
       top={'0'}
     >
       <Flex
-        minH={'93px'}
-        py={{ base: '20px' }}
+        minH={['70px', '70px', '93px']}
         px={{ base: 4 }}
         borderBottom={1}
         borderStyle={'solid'}

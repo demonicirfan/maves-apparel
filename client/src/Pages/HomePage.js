@@ -7,7 +7,6 @@ import { Box } from '@chakra-ui/react';
 const HomePage = () => {
   return (
     <Box bg={'#FAF9F8'}>
-      <Navbar />
       <Carousel />
       <Featured />
     </Box>
