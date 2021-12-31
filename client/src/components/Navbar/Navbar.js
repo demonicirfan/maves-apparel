@@ -172,7 +172,7 @@ const MobileNavItem = ({ label, children, href }) => {
 
   return (
     <Stack spacing={4} onClick={children && onToggle}>
-      <RouterLink to={href ?? '#'} >
+      <RouterLink to={href ?? '#'}>
         <Flex
           py={0}
           as={ChakraLink}
@@ -248,19 +248,15 @@ const NAV_ITEMS = [
       },
       {
         label: 'Tracksuits',
-        href: 'tract-suit',
+        href: 'tracksuits',
       },
       {
-        label: 'Active Wear',
-        href: 'active-wear',
+        label: 'Jeans',
+        href: 'jeans',
       },
       {
-        label: 'Knitwear',
-        href: 'knitwear',
-      },
-      {
-        label: 'Shorts',
-        href: 'shorts',
+        label: 'Shoes',
+        href: 'shoes',
       },
     ],
   },

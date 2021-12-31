@@ -48,8 +48,8 @@ const Featured = () => {
         })
 
         .then((jsonResponse) => {
-          setItems(jsonResponse.getProducts);
-          console.log(jsonResponse.getProducts);
+          const firstSixItems = jsonResponse.getProducts.slice(0, 6);
+          setItems(firstSixItems);
         });
     } catch (err) {
       console.log(err);

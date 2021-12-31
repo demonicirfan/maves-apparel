@@ -57,7 +57,7 @@ const Contact = () => {
     event.preventDefault();
     let databody = {
       title: title,
-      imgURL: url,
+      img: url,
       code: code,
       size: size,
       category: category,
@@ -166,9 +166,8 @@ const Contact = () => {
                           <option value='polo'>Polo</option>
                           <option value='hoodies'>Hoodie</option>
                           <option value='tracksuits'>TrackSuit</option>
-                          <option value='activewear'>ActiveWear</option>
-                          <option value='knitwear'>Knitwear</option>
-                          <option value='shorts'>Shorts</option>
+                          <option value='jeans'>Jeans</option>
+                          <option value='shoes'>Shoes</option>
                         </Select>
                       </InputGroup>
                     </FormControl>

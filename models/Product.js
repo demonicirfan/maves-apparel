@@ -6,7 +6,15 @@ const productSchema = new mongoose.Schema({
   category: {
     type: String,
     enum: {
-      values: ['gloves', 'tshirt', 'polo', 'hoodies', 'tracksuits', 'shorts'],
+      values: [
+        'gloves',
+        'tshirt',
+        'polo',
+        'hoodies',
+        'tracksuits',
+        'jeans',
+        'shoes',
+      ],
     },
   },
   size: { type: String },
