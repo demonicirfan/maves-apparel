@@ -1,8 +1,12 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const dotenv = require('dotenv');
+const cors = require('cors');
+const morgan = require('morgan');
+const path = require('path');
+
 const productRouter = require('./routes/Products');
-const cors = require('cors')
+
 var bodyParser = require('body-parser');
 
 const app = express();
@@ -18,7 +22,18 @@ mongoose
 
 app.use('/api/v1/products', productRouter);
 
-app.use(express.static(path.join(_dirname, './client')))
+app.use(express.static(path.join(_dirname, './client/build')));
+
+app.get('*', (_req, res) => {
+  res.sendFile(
+    path.join(_dirname, './client/build/index.html'),
+    function (err) {
+      if (err) {
+        res.status(500).send(err);
+      }
+    }
+  );
+});
 
 app.listen(process.env.PORT || 3002, () => {
   console.log('Send requests at port ' + process.env.PORT || 5000 + ' 🏃');
