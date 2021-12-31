@@ -39,7 +39,7 @@ export default function CaptionCarousel() {
   return (
     <Box
       position={'relative'}
-      height={['430px', '500px']}
+      height={['400px', '500px']}
       width={'full'}
       overflow={'hidden'}
       mt={['64px', '64px', '88px']}

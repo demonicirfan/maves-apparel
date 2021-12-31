@@ -14,18 +14,15 @@ import {
   useDisclosure,
   Image,
 } from '@chakra-ui/react';
-import {
-  HamburgerIcon,
-  CloseIcon,
-  ChevronDownIcon,
-  ChevronRightIcon,
-} from '@chakra-ui/icons';
+import { CloseIcon, ChevronDownIcon, ChevronRightIcon } from '@chakra-ui/icons';
+import { RiMenu2Line } from 'react-icons/ri';
 import logo from '../../Images/Logo.png';
-import { Link as RouterLink } from 'react-router-dom';
+import { Link as RouterLink, useNavigate } from 'react-router-dom';
+
 const _bg = '#FAF9F8';
 export default function Navbar() {
   const { isOpen, onToggle } = useDisclosure();
-
+  const navigate = useNavigate();
   return (
     <Box
       bg={_bg}
@@ -53,9 +50,9 @@ export default function Navbar() {
             onClick={onToggle}
             icon={
               isOpen ? (
-                <CloseIcon color={'black'} w={3} h={3} />
+                <CloseIcon color={'black'} w={4} h={4} />
               ) : (
-                <HamburgerIcon w={5} h={5} color={'black'} />
+                <RiMenu2Line size={28} color={'black'} />
               )
             }
             variant={'ghost'}
@@ -69,7 +66,14 @@ export default function Navbar() {
           mx={'auto'}
           pr={['0', '0', '28']}
         >
-          <Image src={logo} alt='logo' width={20} />
+          <Image
+            src={logo}
+            alt='logo'
+            width={20}
+            onClick={() => {
+              navigate('/home');
+            }}
+          />
           <Flex display={{ base: 'none', md: 'flex' }} mx={'auto'}>
             <DesktopNav />
           </Flex>
