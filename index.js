@@ -18,6 +18,8 @@ mongoose
 
 app.use('/api/v1/products', productRouter);
 
+app.use(express.static(path.join(_dirname, './client')))
+
 app.listen(process.env.PORT || 3002, () => {
   console.log('Send requests at port ' + process.env.PORT || 5000 + ' 🏃');
 });
