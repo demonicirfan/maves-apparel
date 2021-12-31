@@ -78,7 +78,7 @@ const Product = () => {
           <Flex
             display={{ base: 'flex', md: 'none' }}
             direction='column'
-            m={'auto'}
+            pl={'8'}
           >
             <SmallScreenLoader />
           </Flex>
@@ -94,10 +94,10 @@ const Product = () => {
       ) : (
         <Stack
           align={'flex-start'}
-          spacing={['8','8', '16']}
+          spacing={['8', '8', '16']}
           direction={{ base: 'column', md: 'row' }}
         >
-          <Box outline={'1px solid black'}>
+          <Box>
             <Image
               src={item.img}
               fit={'cover'}
@@ -130,11 +130,11 @@ const Product = () => {
                 <Text as='span' textTransform={'uppercase'}>
                   - {item.size}
                 </Text>
-                <Box mt={['2', '3']}>
-                  <Text as='span' color={'white'} bg='gray.900' pl={'2'}>
+                <Box mt={['2', '3']} bg={'black'} w={'fit-content'} p={'1'}>
+                  <Text as='span' color={'white'} pl={'2'}>
                     Code{' '}
                   </Text>{' '}
-                  <Text pr='2' as='span' color={'white'} bg='gray.900'>
+                  <Text pr='2' as='span' color={'white'}>
                     - #{item.code}
                   </Text>
                 </Box>

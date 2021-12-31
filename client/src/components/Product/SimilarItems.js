@@ -68,7 +68,7 @@ const SimilarItems = (props) => {
     <VStack py={'16'} direction={'row'} maxW={'6xl'} mx={'auto'} bg={'FAF9F8'}>
       <Text
         color={'black'}
-        fontSize={['2xl', '4xl']}
+        fontSize={['3xl', '4xl']}
         mx={'auto'}
         my={'8'}
         fontFamily={'Italiana'}

@@ -1,4 +1,4 @@
-import { Flex, VStack, Text, Center } from '@chakra-ui/react';
+import { Flex, VStack, Text } from '@chakra-ui/react';
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import Card from '../components/Featured/FeaturedCard';
@@ -44,12 +44,12 @@ const CategoryProducts = () => {
     try {
       fetch(`/api/v1/products/?category=${category}`)
         .then((res) => {
-          setIsLoading(false);
           if (res.ok) {
             return res.json();
           }
         })
         .then((jsonResponse) => {
+          setIsLoading(false);
           setItems(jsonResponse.getProducts);
           console.log(jsonResponse.getProducts);
         });
