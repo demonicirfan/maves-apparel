@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react';
 import Card from '../Featured/FeaturedCard';
 import ContentLoader from 'react-content-loader';
 import { useNavigate } from 'react-router-dom';
-
+import { BsArrowRight } from 'react-icons/bs';
 let itemCategory;
 const BigScreenLoaderProducts = (props) => (
   <ContentLoader
@@ -108,9 +108,11 @@ const SimilarItems = (props) => {
         )}
       </Flex>
       <Button
+        rightIcon={<BsArrowRight />}
         bg='black'
         color={'white'}
-        rounded={'full'}
+        rounded={'0'}
+        fontWeight={'400'}
         px={'4'}
         mb={'4'}
         onClick={() => {

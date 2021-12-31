@@ -61,13 +61,17 @@ const Featured = () => {
       <Text
         fontFamily={'Italiana'}
         color={'black'}
-        fontSize={['2xl', '4xl']}
+        fontSize={['3xl', '4xl']}
         mx={'auto'}
-        my={'8'}
+        my={['4', '8']}
       >
         Featured
       </Text>
-      <Flex wrap={'wrap'} justifyContent={'space-around'} px={['0', '8']}>
+      <Flex
+        wrap={'wrap'}
+        justifyContent={'space-around'}
+        px={['0','8', '8']}
+      >
         {isLoading ? (
           <>
             <Flex display={{ base: 'flex', md: 'none' }} direction='column'>

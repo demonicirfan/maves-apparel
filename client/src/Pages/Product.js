@@ -1,15 +1,6 @@
-import {
-  Flex,
-  VStack,
-  Text,
-  Center,
-  Stack,
-  Box,
-  Image,
-} from '@chakra-ui/react';
+import { Flex, VStack, Text, Stack, Box, Image } from '@chakra-ui/react';
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import ReactImageMagnify from 'react-image-magnify';
 import ContentLoader from 'react-content-loader';
 import SimilarItems from '../components/Product/SimilarItems';
 
@@ -79,7 +70,7 @@ const Product = () => {
       direction={'row'}
       mx={'auto'}
       bg={'#FAF9F8'}
-      mt={['0', '0', '16']}
+      mt={['2', '2', '16']}
       pt={'16'}
     >
       {isLoading ? (
@@ -103,47 +94,31 @@ const Product = () => {
       ) : (
         <Stack
           align={'flex-start'}
-          spacing={['8', '16']}
+          spacing={['8','8', '16']}
           direction={{ base: 'column', md: 'row' }}
         >
-          <Box display={{ base: 'flex', md: 'none' }}>
-            <Image src={item.img} h={'480px'} fit={'cover'} w={'100vw'} />
-          </Box>
-
-          <Center
-            display={{ base: 'none', md: 'flex' }}
-            maxW={'400px'}
-            m='auto'
-          >
-            <ReactImageMagnify
-              {...{
-                smallImage: {
-                  alt: 'Wristwatch by Ted Baker London',
-                  isFluidWidth: true,
-                  src: `${item.img}`,
-                },
-                largeImage: {
-                  src: `${item.img}`,
-                  width: 1200,
-                  height: 1500,
-                },
-                isHintEnabled: true,
-                shouldHideHintAfterFirstActivation: true,
-              }}
+          <Box outline={'1px solid black'}>
+            <Image
+              src={item.img}
+              fit={'cover'}
+              h={['480px', '480px', '40vw']}
+              maxH={'460px'}
+              w={['100vw', '100vw', '40vw']}
+              maxW={'460px'}
             />
-          </Center>
+          </Box>
 
           <VStack
             spacing={'4'}
             align={'flex-start'}
             pt={['0', '8']}
             mx={'auto'}
-            pl={['8', '16', '0']}
+            pl={['4', '8', '0']}
           >
             <Text
               textTransform={'capitalize'}
               fontSize={['3xl', '4xl']}
-              fontWeight={'600'}
+              fontWeight={'500'}
             >
               {item.title}
             </Text>
@@ -155,13 +130,17 @@ const Product = () => {
                 <Text as='span' textTransform={'uppercase'}>
                   - {item.size}
                 </Text>
-                <Text ml={['8', '8']} as='span' fontWeight={'600'}>
-                  Code{' '}
-                </Text>{' '}
-                <Text as='span'>- #{item.code}</Text>
+                <Box mt={['2', '3']}>
+                  <Text as='span' color={'white'} bg='gray.900' pl={'2'}>
+                    Code{' '}
+                  </Text>{' '}
+                  <Text pr='2' as='span' color={'white'} bg='gray.900'>
+                    - #{item.code}
+                  </Text>
+                </Box>
               </Text>
-              <VStack align={'flex-start'} maxW={['300px', '500px']}>
-                <Text fontSize={['sm', 'md']} noOfLines={'4'}>
+              <VStack align={'flex-start'} maxW={['85vw', '450px']}>
+                <Text fontSize={['sm', 'md']} noOfLines={'5'}>
                   Lorem ipsum dolor sit amet consectetur adipisicing elit.
                   Consectetur ea soluta quam officiis debitis! Similique cum ut
                   minus! Ut ratione eius voluptatem repellat. Consectetur

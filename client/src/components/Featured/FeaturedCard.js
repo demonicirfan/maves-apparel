@@ -16,12 +16,14 @@ function Card(params) {
           shadow: '2xl',
         }}
       >
-        <Box boxSize={['300px', '300px', '340px']}>
+        <Box boxSize={['80vw', '80vw', '340px']} maxW={'350px'} maxH={'360px'}>
           <Image
             src={params.imageURL}
             alt={params.title}
             fit={'cover'}
-            h={['300px', '300px', '340px']}
+            h={['80vw', '80vw', '340px']}
+            maxH={'350px'}
+            maxW={'350px'}
             w={'100%'}
           />
         </Box>
@@ -49,7 +51,7 @@ function Card(params) {
           px={['2', '4']}
           mb={'4'}
           textTransform={'capitalize'}
-          fontWeight={'400'}
+          fontWeight={'200'}
           color={'gray.700'}
           isTruncated
         >

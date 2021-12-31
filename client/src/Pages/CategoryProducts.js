@@ -1,4 +1,4 @@
-import { Flex, VStack, Text } from '@chakra-ui/react';
+import { Flex, VStack, Text, Center } from '@chakra-ui/react';
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import Card from '../components/Featured/FeaturedCard';
@@ -59,56 +59,52 @@ const CategoryProducts = () => {
   }, [category, setItems]);
 
   return (
-    <VStack
-      minH={'90vh'}
-      direction={'row'}
-      maxW={'6xl'}
-      mx={'auto'}
-      bg={'FAF9F8'}
-    >
-      <Text
-        color={'black'}
-        fontSize={['2xl', '4xl']}
-        mx={'auto'}
-        my={'8'}
-        pt={'16'}
-        fontFamily={'Italiana'}
-        textTransform={'capitalize'}
-      >
-        {category}
-      </Text>
-      <Flex wrap={'wrap'} justifyContent={'space-around'} px={['0', '8']}>
-        {isLoading ? (
-          <>
-            <Flex display={{ base: 'flex', md: 'none' }} direction='column'>
-              <SmallScreenLoader />
-              <SmallScreenLoader />
-              <SmallScreenLoader />
-            </Flex>
-            <Flex
-              display={{ base: 'none', md: 'flex' }}
-              direction='row'
-              gap={'5vw'}
-            >
-              <BigScreenLoader />
-              <BigScreenLoader />
-              <BigScreenLoader />
-            </Flex>
-          </>
-        ) : (
-          <>
-            {items.map((item) => (
-              <Card
-                title={item.title}
-                imageURL={item.img}
-                code={item.code}
-                size={item.size}
-                id={item._id}
-              />
-            ))}
-          </>
-        )}
-      </Flex>
+    <VStack minH={'90vh'} direction={'row'} mx={'auto'} bg={'#FAF9F8'}>
+      <VStack maxW={'6xl'}>
+        <Text
+          color={'black'}
+          fontSize={['3xl', '4xl']}
+          mx={'auto'}
+          my={'8'}
+          pt={'16'}
+          fontFamily={'Italiana'}
+          textTransform={'capitalize'}
+        >
+          {category}
+        </Text>
+        <Flex wrap={'wrap'} justifyContent={'space-around'} px={['0', '4']}>
+          {isLoading ? (
+            <>
+              <Flex display={{ base: 'flex', md: 'none' }} direction='column'>
+                <SmallScreenLoader />
+                <SmallScreenLoader />
+                <SmallScreenLoader />
+              </Flex>
+              <Flex
+                display={{ base: 'none', md: 'flex' }}
+                direction='row'
+                gap={'5vw'}
+              >
+                <BigScreenLoader />
+                <BigScreenLoader />
+                <BigScreenLoader />
+              </Flex>
+            </>
+          ) : (
+            <>
+              {items.map((item) => (
+                <Card
+                  title={item.title}
+                  imageURL={item.img}
+                  code={item.code}
+                  size={item.size}
+                  id={item._id}
+                />
+              ))}
+            </>
+          )}
+        </Flex>
+      </VStack>
     </VStack>
   );
 };
