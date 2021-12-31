@@ -56,7 +56,7 @@ const CategoryProducts = () => {
     } catch (err) {
       console.log(err);
     }
-  }, []);
+  }, [category, setItems]);
 
   return (
     <VStack

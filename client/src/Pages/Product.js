@@ -72,7 +72,7 @@ const Product = () => {
     } catch (err) {
       console.log(err);
     }
-  }, [setItem]);
+  }, [id, setItem]);
 
   return (
     <VStack

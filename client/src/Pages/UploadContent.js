@@ -1,13 +1,11 @@
 import {
   Container,
-  Flex,
   Box,
   Heading,
   Text,
   Center,
   Button,
   VStack,
-  HStack,
   WrapItem,
   FormControl,
   FormLabel,
@@ -24,7 +22,7 @@ import {
   ModalCloseButton,
   useDisclosure,
 } from '@chakra-ui/react';
-import { useState, useRef } from 'react';
+import { useState } from 'react';
 
 const Contact = () => {
   const [title, setTitle] = useState('');
@@ -35,7 +33,6 @@ const Contact = () => {
   const [featured, setFeatured] = useState(false);
 
   const { isOpen, onOpen, onClose } = useDisclosure();
-  const finalRef = useRef();
 
   const titleChangeHandler = (event) => {
     setTitle(event.target.value);

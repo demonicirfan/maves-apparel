@@ -1,19 +1,7 @@
 import React from 'react';
-import {
-  Box,
-  IconButton,
-  useBreakpointValue,
-  Stack,
-  Heading,
-  Text,
-  Container,
-} from '@chakra-ui/react';
-// Here we have used react-icons package for the icons
-import { BiLeftArrowAlt, BiRightArrowAlt } from 'react-icons/bi';
-// And react-slick as our Carousel Lib
+import { Box } from '@chakra-ui/react';
 import Slider from 'react-slick';
 
-// Settings for the slider
 const settings = {
   dots: true,
   arrows: false,
@@ -27,10 +15,6 @@ const settings = {
 };
 
 export default function CaptionCarousel() {
-  const [slider, setSlider] = React.useState(null);
-
-  // This list contains all the data for carousels
-  // This can be static or loaded from a server
   const cards = [
     {
       title: 'Design Projects 1',
@@ -72,7 +56,7 @@ export default function CaptionCarousel() {
         type='text/css'
         href='https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.6.0/slick-theme.min.css'
       />
-      <Slider {...settings} ref={(slider) => setSlider(slider)}>
+      <Slider {...settings}>
         {cards.map((card, index) => (
           <Box
             key={index}

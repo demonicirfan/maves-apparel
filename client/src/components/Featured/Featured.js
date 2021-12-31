@@ -1,4 +1,4 @@
-import { Flex, Center, VStack, Text } from '@chakra-ui/react';
+import { Flex, VStack, Text } from '@chakra-ui/react';
 import React, { useEffect, useState } from 'react';
 import Card from './FeaturedCard.js';
 import ContentLoader from 'react-content-loader';
