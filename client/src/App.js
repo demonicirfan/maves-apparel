@@ -9,6 +9,7 @@ import Contact from './Pages/ContactUs';
 import UploadContent from './Pages/UploadContent';
 import Product from './Pages/Product';
 import CategoryProducts from './Pages/CategoryProducts';
+import Footer from './components/Footer/Footer';
 
 const App = () => {
   return (
@@ -24,6 +25,7 @@ const App = () => {
           <Route path='/product/:id' element={<Product />} />
           <Route path='/:category' element={<CategoryProducts />} />
         </Routes>
+        <Footer />
       </BrowserRouter>
     </ChakraProvider>
   );

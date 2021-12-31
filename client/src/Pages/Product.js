@@ -54,9 +54,7 @@ const SmallScreenLoader = (props) => (
 const Product = () => {
   const [item, setItem] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
-
   const { id } = useParams();
-  console.log(id);
 
   useEffect(() => {
     try {
@@ -79,7 +77,6 @@ const Product = () => {
   return (
     <VStack
       direction={'row'}
-      maxW={'6xl'}
       mx={'auto'}
       bg={'#FAF9F8'}
       mt={['0', '0', '16']}
@@ -90,7 +87,7 @@ const Product = () => {
           <Flex
             display={{ base: 'flex', md: 'none' }}
             direction='column'
-            mx={'auto'}
+            m={'auto'}
           >
             <SmallScreenLoader />
           </Flex>
@@ -98,7 +95,7 @@ const Product = () => {
             display={{ base: 'none', md: 'flex' }}
             direction='row'
             gap={'16'}
-            mx={'auto'}
+            m={'auto'}
           >
             <BigScreenLoader />
           </Flex>
@@ -137,10 +134,11 @@ const Product = () => {
           </Center>
 
           <VStack
-            spacing={'8'}
+            spacing={'4'}
             align={'flex-start'}
             pt={['0', '8']}
             mx={'auto'}
+            pl={['8', '16', '0']}
           >
             <Text
               textTransform={'capitalize'}
@@ -150,23 +148,20 @@ const Product = () => {
               {item.title}
             </Text>
             <VStack spacing={['2', '4']} align={'flex-start'} px={'auto'}>
-              <Text fontSize={['md', 'xl']}>
+              <Text fontSize={['md', 'xl']} w={'full'}>
                 <Text as='span' fontWeight={'600'}>
                   Size{' '}
                 </Text>
-                - {item.size}
-              </Text>
-              <Text fontSize={['md', 'xl']}>
-                <Text as='span' fontWeight={'600'}>
+                <Text as='span' textTransform={'uppercase'}>
+                  - {item.size}
+                </Text>
+                <Text ml={['8', '8']} as='span' fontWeight={'600'}>
                   Code{' '}
                 </Text>{' '}
-                - #{item.code}
+                <Text as='span'>- #{item.code}</Text>
               </Text>
               <VStack align={'flex-start'} maxW={['300px', '500px']}>
-                <Text
-                  fontSize={['sm', 'lg']}
-                  noOfLines={'4'}
-                >
+                <Text fontSize={['sm', 'md']} noOfLines={'4'}>
                   Lorem ipsum dolor sit amet consectetur adipisicing elit.
                   Consectetur ea soluta quam officiis debitis! Similique cum ut
                   minus! Ut ratione eius voluptatem repellat. Consectetur

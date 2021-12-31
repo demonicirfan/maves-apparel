@@ -127,7 +127,7 @@ const DesktopNav = () => {
 
 const DesktopSubNav = ({ label, href, subLabel }) => {
   return (
-    <RouterLink to={href}>
+    <RouterLink to={href} reloadDocument>
       <ChakraLink role={'group'} display={'block'} p={2}>
         <Stack direction={'row'} align={'center'}>
           <Box>
@@ -172,7 +172,7 @@ const MobileNavItem = ({ label, children, href }) => {
 
   return (
     <Stack spacing={4} onClick={children && onToggle}>
-      <RouterLink to={href ?? '#'}>
+      <RouterLink to={href ?? '#'} >
         <Flex
           py={0}
           as={ChakraLink}
@@ -208,7 +208,7 @@ const MobileNavItem = ({ label, children, href }) => {
         >
           {children &&
             children.map((child) => (
-              <RouterLink key={child.label} to={child.href}>
+              <RouterLink key={child.label} to={child.href} reloadDocument>
                 <ChakraLink py={2}>{child.label}</ChakraLink>
               </RouterLink>
             ))}

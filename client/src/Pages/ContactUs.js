@@ -3,7 +3,7 @@ import React from 'react';
 
 const Contact = () => {
   return (
-    <Center py={'80'}>
+    <Center py={'80'} minH={'90vh'}>
       <Heading>Contact US Page</Heading>
     </Center>
   );

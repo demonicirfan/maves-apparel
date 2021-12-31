@@ -1,8 +1,10 @@
-import { Flex, Text, VStack } from '@chakra-ui/react';
+import { Flex, Text, VStack, Button } from '@chakra-ui/react';
 import React, { useEffect, useState } from 'react';
 import Card from '../Featured/FeaturedCard';
 import ContentLoader from 'react-content-loader';
+import { useNavigate } from 'react-router-dom';
 
+let itemCategory;
 const BigScreenLoaderProducts = (props) => (
   <ContentLoader
     speed={2}
@@ -37,6 +39,9 @@ const SmallScreenLoaderProducts = (props) => (
 const SimilarItems = (props) => {
   const [items, setItems] = useState([]);
   const [isLoadingProducts, setIsLoadingProducts] = useState(true);
+
+  const navigate = useNavigate();
+
   console.log('isloadingProducts ' + isLoadingProducts);
   useEffect(() => {
     fetch(`/api/v1/products/?category=${props.category}`)
@@ -54,12 +59,13 @@ const SimilarItems = (props) => {
         // }
         const firstSixItems = jsonResponse.getProducts.slice(0, 6);
         setItems(firstSixItems);
+        itemCategory = firstSixItems[1].category;
         console.log(firstSixItems);
       });
   });
 
   return (
-    <VStack direction={'row'} maxW={'6xl'} mx={'auto'} bg={'FAF9F8'} my={'16'}>
+    <VStack py={'16'} direction={'row'} maxW={'6xl'} mx={'auto'} bg={'FAF9F8'}>
       <Text
         color={'black'}
         fontSize={['2xl', '4xl']}
@@ -101,16 +107,22 @@ const SimilarItems = (props) => {
           </>
         )}
       </Flex>
-      <Text
+      <Button
         bg='black'
         color={'white'}
         rounded={'full'}
         px={'4'}
-        py={'2'}
         mb={'4'}
+        onClick={() => {
+          navigate(`/${itemCategory}`);
+        }}
+        _hover={{
+          transform: 'translateY(-2px)',
+          transition: 'transform 200ms ease-in-out 15ms',
+        }}
       >
         View more
-      </Text>
+      </Button>
     </VStack>
   );
 };

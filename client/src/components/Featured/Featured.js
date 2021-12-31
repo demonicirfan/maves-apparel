@@ -14,8 +14,8 @@ const BigScreenLoader = (props) => (
     {...props}
   >
     <rect x='12' y='6' rx='0' ry='0' width='274' height='281' />
-    <rect x='13' y='309' rx='0' ry='0' width='275' height='12' />
-    <rect x='13' y='341' rx='0' ry='0' width='271' height='25' />
+    <rect x='13' y='309' rx='0' ry='0' width='100' height='8' />
+    <rect x='13' y='341' rx='0' ry='0' width='271' height='8' />
   </ContentLoader>
 );
 const SmallScreenLoader = (props) => (
@@ -29,8 +29,8 @@ const SmallScreenLoader = (props) => (
     {...props}
   >
     <rect x='0' y='14' rx='0' ry='0' width='244' height='207' />
-    <rect x='1' y='237' rx='0' ry='0' width='244' height='20' />
-    <rect x='-1' y='274' rx='0' ry='0' width='244' height='33' />
+    <rect x='1' y='250' rx='0' ry='0' width='100' height='8' />
+    <rect x='-1' y='274' rx='0' ry='0' width='244' height='8' />
   </ContentLoader>
 );
 const Featured = () => {
@@ -67,7 +67,7 @@ const Featured = () => {
       >
         Featured
       </Text>
-      <Flex wrap={'wrap'} justifyContent={'space-around'}>
+      <Flex wrap={'wrap'} justifyContent={'space-around'} px={['0', '8']}>
         {isLoading ? (
           <>
             <Flex display={{ base: 'flex', md: 'none' }} direction='column'>
@@ -78,7 +78,7 @@ const Featured = () => {
             <Flex
               display={{ base: 'none', md: 'flex' }}
               direction='row'
-              gap={'16'}
+              gap={'5vw'}
             >
               <BigScreenLoader />
               <BigScreenLoader />

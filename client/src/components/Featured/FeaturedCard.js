@@ -3,12 +3,12 @@ import { Link } from 'react-router-dom';
 
 function Card(params) {
   return (
-    <Link to={`/product/${params.id}`}>
+    <Link to={`/product/${params.id}`} reloadDocument>
       <Center
         flexDirection={'column'}
         bg={'white'}
         shadow={'xl'}
-        mx={['2', '4', '8']}
+        mx={['2', '4', '2']}
         mb={['16', '28']}
         _hover={{
           transform: 'translateY(-5px)',
@@ -16,14 +16,13 @@ function Card(params) {
           shadow: '2xl',
         }}
       >
-        <Box boxSize={['280px', '280px', '300px']}>
+        <Box boxSize={['300px', '300px', '340px']}>
           <Image
             src={params.imageURL}
             alt={params.title}
             fit={'cover'}
-            h={['260px', '270px', '300px']}
+            h={['300px', '300px', '340px']}
             w={'100%'}
-            s
           />
         </Box>
         <HStack
@@ -33,19 +32,26 @@ function Card(params) {
           m={'2'}
           px={['3', '4']}
         >
-          <Text fontSize={['13px', '20px']} color={'gray.600'}>
+          <Text fontSize={['16px', '20px']} color={'gray.600'}>
             #{params.code}
           </Text>
-          <Text fontSize={['13px', '18px']} color={'gray.500'}>
+          <Text
+            fontSize={['16px', '18px']}
+            color={'gray.500'}
+            textTransform={'uppercase'}
+          >
             {params.size}
           </Text>
         </HStack>
         <Heading
-          color={'black'}
-          fontSize={['md', 'xl', '3xl']}
+          fontSize={['xl', 'xl', '2xl']}
           alignSelf={'start'}
-          p={['3', '4']}
+          px={['2', '4']}
+          mb={'4'}
           textTransform={'capitalize'}
+          fontWeight={'400'}
+          color={'gray.700'}
+          isTruncated
         >
           {params.title}
         </Heading>

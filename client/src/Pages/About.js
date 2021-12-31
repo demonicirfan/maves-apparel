@@ -3,7 +3,7 @@ import React from 'react';
 
 const About = () => {
   return (
-    <Center py={'80'}>
+    <Center py={'80'} minH={'90vh'}>
       <Heading>About US Page</Heading>
     </Center>
   );
