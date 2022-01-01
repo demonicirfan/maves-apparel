@@ -33,6 +33,7 @@ function Card(params) {
           w='100%'
           m={'2'}
           px={['3', '4']}
+          fontWeight={'300'}
         >
           <Text fontSize={['16px', '20px']} color={'gray.600'}>
             #{params.code}
@@ -41,6 +42,7 @@ function Card(params) {
             fontSize={['16px', '18px']}
             color={'gray.500'}
             textTransform={'uppercase'}
+            fontWeight={'300'}
           >
             {params.size}
           </Text>
@@ -51,7 +53,7 @@ function Card(params) {
           px={['2', '4']}
           mb={'4'}
           textTransform={'capitalize'}
-          fontWeight={'200'}
+          fontWeight={'300'}
           color={'gray.700'}
           isTruncated
         >

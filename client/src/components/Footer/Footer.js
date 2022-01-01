@@ -45,7 +45,7 @@ export default function Footer() {
         justify={{ base: 'center', md: 'space-between' }}
         align={{ base: 'center', md: 'center' }}
       >
-        <Text fontSize={['sm', 'md']}>
+        <Text fontSize={['sm', 'md']} fontWeight={'300'}>
           © 2022 Maves Aparel. All rights reserved
         </Text>
         <Stack direction={'row'} spacing={6}>

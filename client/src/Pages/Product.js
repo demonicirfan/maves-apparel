@@ -124,10 +124,10 @@ const Product = () => {
             </Text>
             <VStack spacing={['2', '4']} align={'flex-start'} px={'auto'}>
               <Text fontSize={['md', 'xl']} w={'full'}>
-                <Text as='span' fontWeight={'600'}>
+                <Text as='span' fontWeight={'500'}>
                   Size{' '}
                 </Text>
-                <Text as='span' textTransform={'uppercase'}>
+                <Text as='span' textTransform={'uppercase'} fontWeight={'400'}>
                   - {item.size}
                 </Text>
                 <Box mt={['2', '3']} bg={'black'} w={'fit-content'} p={'1'}>
@@ -140,7 +140,7 @@ const Product = () => {
                 </Box>
               </Text>
               <VStack align={'flex-start'} maxW={['85vw', '450px']}>
-                <Text fontSize={['sm', 'md']} noOfLines={'5'}>
+                <Text fontSize={['sm', 'md']} noOfLines={'5'} fontWeight={'300'}>
                   Lorem ipsum dolor sit amet consectetur adipisicing elit.
                   Consectetur ea soluta quam officiis debitis! Similique cum ut
                   minus! Ut ratione eius voluptatem repellat. Consectetur

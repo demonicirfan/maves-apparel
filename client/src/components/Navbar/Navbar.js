@@ -101,7 +101,7 @@ const DesktopNav = () => {
                 <ChakraLink
                   p={2}
                   fontSize={'lg'}
-                  fontWeight={300}
+                  fontWeight={'300'}
                   color={linkColor}
                   _hover={{
                     textDecoration: 'none',
@@ -138,7 +138,7 @@ const DesktopSubNav = ({ label, href, subLabel }) => {
             <Text
               transition={'all .3s ease'}
               _groupHover={{ color: 'black' }}
-              fontWeight={500}
+              fontWeight={300}
             >
               {label}
             </Text>
@@ -186,7 +186,7 @@ const MobileNavItem = ({ label, children, href }) => {
             textDecoration: 'none',
           }}
         >
-          <Text fontWeight={500} color={'gray.700'}>
+          <Text fontWeight={5300} color={'gray.700'}>
             {label}
           </Text>
           {children && (
@@ -213,7 +213,7 @@ const MobileNavItem = ({ label, children, href }) => {
           {children &&
             children.map((child) => (
               <RouterLink key={child.label} to={child.href} reloadDocument>
-                <ChakraLink py={2}>{child.label}</ChakraLink>
+                <ChakraLink py={2} fontWeight={'300'}>{child.label}</ChakraLink>
               </RouterLink>
             ))}
         </Stack>
