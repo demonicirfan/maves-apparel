@@ -67,11 +67,7 @@ const Featured = () => {
       >
         Featured
       </Text>
-      <Flex
-        wrap={'wrap'}
-        justifyContent={'space-around'}
-        px={['0','8', '8']}
-      >
+      <Flex wrap={'wrap'} justifyContent={'space-around'} px={['0', '8', '8']}>
         {isLoading ? (
           <>
             <Flex display={{ base: 'flex', md: 'none' }} direction='column'>

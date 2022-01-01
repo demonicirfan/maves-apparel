@@ -99,7 +99,7 @@ const Contact = () => {
       >
         <VStack spacing={8} my={'8'}>
           <VStack alignItems={'center'}>
-            <Heading fontSize={'3xl'}>Add Product</Heading>
+            <Heading fontSize={'3xl'} fontFamily={'Italiana'}>Add Product</Heading>
             <Text
               mt={{ sm: 3, md: 3, lg: 5 }}
               color='gray.500'
