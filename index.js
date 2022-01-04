@@ -37,4 +37,4 @@ app.get('*', (_req, res) => {
 
 app.listen(process.env.PORT || 3002, () => {
   console.log('Send requests at port ' + process.env.PORT || 5000 + ' 🏃');
-});
+}); //deployment check
